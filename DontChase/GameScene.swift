@@ -2,7 +2,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    let player = SKSpriteNode(imageNamed: "player")
+    let player = SKSpriteNode(imageNamed: "player") // Sprite do jogador 16x16 pixels
     var playerPath: [SKSpriteNode] = []
     var enemies: [SKSpriteNode] = []
     var playerLives = 3
@@ -21,7 +21,7 @@ class GameScene: SKScene {
     }
     
     func createBackground() {
-        let backgroundTexture = SKTexture(imageNamed: "background")
+        let backgroundTexture = SKTexture(imageNamed: "background") // Nome do sprite de 16x16 pixels
         let backgroundNode = SKSpriteNode(texture: backgroundTexture)
         
         let rows = Int(size.height / 32) + 1
@@ -39,7 +39,7 @@ class GameScene: SKScene {
     }
     
     func setupPlayer() {
-        player.size = CGSize(width: 64, height: 64)
+        player.size = CGSize(width: 64, height: 64) // Aumentando o tamanho do jogador
         player.position = CGPoint(x: size.width / 2, y: size.height / 2)
         addChild(player)
     }
@@ -55,8 +55,8 @@ class GameScene: SKScene {
     }
     
     func leaveGasTrail(at position: CGPoint) {
-        let gas = SKSpriteNode(imageNamed: "gas")
-        gas.size = CGSize(width: 32, height: 32)
+        let gas = SKSpriteNode(imageNamed: "gas") // Sprite do rastro de gás
+        gas.size = CGSize(width: 32, height: 32) // Aumentando o tamanho do gás
         gas.position = position
         addChild(gas)
         
@@ -88,24 +88,23 @@ class GameScene: SKScene {
     }
     
     @objc func spawnEnemy() {
-        let enemy = SKSpriteNode(imageNamed: "enemy")
-        enemy.size = CGSize(width: 64, height: 64)
+        let enemy = SKSpriteNode(imageNamed: "enemy") // Sprite do inimigo 16x16 pixels
+        enemy.size = CGSize(width: 64, height: 64) // Aumentando o tamanho do inimigo
         
-        // Spawning the enemy at a random position on the screen
-        let xPos = CGFloat.random(in: 0...size.width)
-        let yPos = CGFloat.random(in: 0...size.height)
-        enemy.position = CGPoint(x: xPos, y: yPos)
+        // Spawning the enemy at a random position outside the screen bounds
+        let spawnPosition = getRandomPositionOutsideScreen()
+        enemy.position = spawnPosition
         
         addChild(enemy)
         enemies.append(enemy)
         
-        // Make the enemy follow the player
+        // Make the enemy move towards the player
         let moveAction = SKAction.run { [weak self, weak enemy] in
             guard let self = self, let enemy = enemy else { return }
             let dx = self.player.position.x - enemy.position.x
             let dy = self.player.position.y - enemy.position.y
             let angle = atan2(dy, dx)
-            let speed: CGFloat = 50.0 // Reduzindo a velocidade do inimigo
+            let speed: CGFloat = 20.0 // Reduzindo a velocidade do inimigo
             let vx = cos(angle) * speed
             let vy = sin(angle) * speed
             enemy.position = CGPoint(x: enemy.position.x + vx * CGFloat(self.frame.size.width/1000), y: enemy.position.y + vy * CGFloat(self.frame.size.height/1000))
@@ -115,6 +114,32 @@ class GameScene: SKScene {
         enemy.run(followAction)
         
         print("Spawned enemy at position: \(enemy.position)")
+    }
+    
+    func getRandomPositionOutsideScreen() -> CGPoint {
+        let side = Int.random(in: 0..<4)
+        let buffer: CGFloat = 50.0 // Distância fora da tela
+        var xPos: CGFloat = 0.0
+        var yPos: CGFloat = 0.0
+        
+        switch side {
+        case 0: // Top
+            xPos = CGFloat.random(in: 0...size.width)
+            yPos = size.height + buffer
+        case 1: // Bottom
+            xPos = CGFloat.random(in: 0...size.width)
+            yPos = -buffer
+        case 2: // Left
+            xPos = -buffer
+            yPos = CGFloat.random(in: 0...size.height)
+        case 3: // Right
+            xPos = size.width + buffer
+            yPos = CGFloat.random(in: 0...size.height)
+        default:
+            break
+        }
+        
+        return CGPoint(x: xPos, y: yPos)
     }
     
     override func update(_ currentTime: TimeInterval) {
