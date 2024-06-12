@@ -18,6 +18,7 @@
 		C92824D72C19F62900DD37E6 /* DontChaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92824D62C19F62900DD37E6 /* DontChaseTests.swift */; };
 		C92824E12C19F62900DD37E6 /* DontChaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92824E02C19F62900DD37E6 /* DontChaseUITests.swift */; };
 		C92824E32C19F62900DD37E6 /* DontChaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92824E22C19F62900DD37E6 /* DontChaseUITestsLaunchTests.swift */; };
+		C9F444402C1A4CD000EC014F /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4443F2C1A4CD000EC014F /* MenuScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		C92824DC2C19F62900DD37E6 /* DontChaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DontChaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92824E02C19F62900DD37E6 /* DontChaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DontChaseUITests.swift; sourceTree = "<group>"; };
 		C92824E22C19F62900DD37E6 /* DontChaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DontChaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C9F4443F2C1A4CD000EC014F /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				C92824C62C19F62700DD37E6 /* Main.storyboard */,
 				C92824C92C19F62900DD37E6 /* Assets.xcassets */,
 				C92824CB2C19F62900DD37E6 /* LaunchScreen.storyboard */,
+				C9F4443F2C1A4CD000EC014F /* MenuScene.swift */,
 			);
 			path = DontChase;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C92824C32C19F62700DD37E6 /* GameScene.swift in Sources */,
+				C9F444402C1A4CD000EC014F /* MenuScene.swift in Sources */,
 				C92824C52C19F62700DD37E6 /* GameViewController.swift in Sources */,
 				C92824BD2C19F62600DD37E6 /* AppDelegate.swift in Sources */,
 			);
