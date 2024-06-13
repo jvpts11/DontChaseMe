@@ -7,7 +7,7 @@ class MenuScene: SKScene {
     }
     
     func setupMenu() {
-        let titleLabel = SKLabelNode(text: "Dont Chase")
+        let titleLabel = SKLabelNode(text: "Dont Chase Me")
         titleLabel.fontSize = 40
         titleLabel.position = CGPoint(x: size.width / 2, y: size.height - 100)
         addChild(titleLabel)

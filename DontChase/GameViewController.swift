@@ -9,8 +9,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Load the initial MenuScene
         presentMenuScene()
     }
     
